@@ -1,0 +1,30 @@
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Sign Up — BLOX WORLD</title></head><body>
+<div style="max-width:420px;margin:40px auto;background:#fff;padding:20px;border-radius:8px;border:1px solid #ddd">
+<h2>Crie sua conta</h2>
+<label>Nome de Usuário<br><input id="display"></label><br><br>
+<label>Email<br><input id="email" type="email"></label><br><br>
+<label>Senha<br><input id="password" type="password"></label><br><br>
+<button onclick="doSignup()">Sign Up</button>
+<p>Já tem conta? <a href="login.html">Entrar</a></p>
+</div>
+<script src="site.js"></script>
+<script>
+function doSignup(){
+  const name = document.getElementById('display').value.trim();
+  const email = document.getElementById('email').value.trim();
+  const pw = document.getElementById('password').value;
+  if(name.length < 3){ alert('Escolha um nome com ao menos 3 caracteres.'); return; }
+  if(pw.length < 6){ alert('Senha precisa ter ao menos 6 caracteres.'); return; }
+  const key = 'blox_user_' + name;
+  if(localStorage.getItem('blox_banned_names')){ const banned = JSON.parse(localStorage.getItem('blox_banned_names')); if(banned.indexOf(name)!==-1){ alert('Nome banido.'); return; } }
+  const obj = {name, email};
+  obj.password = pw;
+  localStorage.setItem(key, JSON.stringify(obj));
+  localStorage.setItem('fingerprint_' + name, localStorage.getItem('blox_fingerprint') || ('fp_'+Date.now()));
+  localStorage.setItem('tokens_' + name, 500);
+  sessionStorage.setItem('blox_user', name);
+  alert('Conta criada (simulada): ' + name);
+  location.href='index.html';
+}
+</script>
+</body></html>
