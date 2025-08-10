@@ -1,17 +1,1 @@
-<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Catalog — BLOX WORLD</title></head><body>
-<header style="background:#0b61a4;padding:12px;color:#fff;display:flex;align-items:center"><a href="index.html"><img src="logo.png" style="height:36px"></a><div style="margin-left:auto" id="userArea"></div></header>
-<nav style="background:#e7eef8;padding:8px"><a href="index.html">Home</a> <a href="games.html">Games</a></nav>
-<div style="max-width:900px;margin:20px auto;background:#fff;padding:12px;border:1px solid #ddd">
-<h1>Catalog</h1><div id="catalogItems"></div>
-</div>
-<script src="site.js"></script>
-<script>
-function renderCatalog(){
-  const wrap = document.getElementById('catalogItems');
-  const items = JSON.parse(localStorage.getItem('blox_catalog')||'["Espada Lendária|200","Chapéu de Mago|150"]');
-  wrap.innerHTML='';
-  items.forEach((it,idx)=>{ const parts = it.split('|'); const div = document.createElement('div'); div.style.border='1px solid #ccc'; div.style.padding='8px'; div.style.marginBottom='8px'; div.innerHTML = '<strong>'+parts[0]+'</strong><br>'+parts[1]+' tokens<br><button>Comprar</button>'; const btn = div.querySelector('button'); btn.onclick=()=>{ const user = sessionStorage.getItem('blox_user'); if(!user){ alert('Faça login'); return; } let tokens = parseInt(localStorage.getItem('tokens_'+user)||0); const price = parseInt(parts[1]); if(tokens>=price){ tokens-=price; localStorage.setItem('tokens_'+user,tokens); alert('Comprou '+parts[0]); updateUserArea(); } else alert('Tokens insuficientes'); }; wrap.appendChild(div); });
-}
-document.addEventListener('DOMContentLoaded', ()=>{ renderCatalog(); updateUserArea(); });
-</script>
-</body></html>
+<h1>Catalog Page</h1>
