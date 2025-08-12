@@ -1,14 +1,1 @@
-<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Avatar Editor — BLOX WORLD</title></head><body>
-<header style="background:#0b61a4;padding:12px;color:#fff;display:flex;align-items:center"><a href="index.html"><img src="logo.png" style="height:36px"></a><div style="margin-left:auto" id="userArea"></div></header>
-<div style="max-width:700px;margin:20px auto;background:#fff;padding:12px;border:1px solid #ddd">
-<h1>Avatar Editor</h1>
-<p>Escolha uma cor para seu avatar:</p>
-<input type="color" id="colorPicker"><button onclick="saveColor()">Salvar</button>
-<div id="preview" style="width:120px;height:120px;border:2px solid #000;margin-top:12px"></div>
-</div>
-<script src="site.js"></script>
-<script>
-function saveColor(){ const user = sessionStorage.getItem('blox_user'); if(!user){ alert('Faça login'); return; } const c = document.getElementById('colorPicker').value; localStorage.setItem('avatarcolor_' + user, c); document.getElementById('preview').style.background=c; alert('Cor salva'); }
-document.addEventListener('DOMContentLoaded', ()=>{ const user = sessionStorage.getItem('blox_user'); updateUserArea(); if(user){ const c = localStorage.getItem('avatarcolor_' + user); if(c) document.getElementById('preview').style.background=c; } });
-</script>
-</body></html>
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Avatar Editor — Blox World</title></head><body><header style="background:#0b61a4;padding:12px;color:#fff;display:flex;align-items:center"><img src="assets/logo_full.png" style="height:36px"><div style="margin-left:auto" id="userArea"></div></header><div style="max-width:700px;margin:20px auto;background:#fff;padding:12px;border:1px solid #ddd"><h1>Avatar Editor</h1><p>Avatar padrão:</p><img src="assets/avatars/avatar_default.png" style="width:140px"><p>Escolha cor (salva local):</p><input type="color" id="color"><button onclick="save()">Salvar</button></div><script src="assets/site.js"></script><script>function save(){ const user=sessionStorage.getItem('blox_user'); if(!user){ alert('Faça login'); location.href='login.html'; return; } const c=document.getElementById('color').value; localStorage.setItem('avatarcolor_'+user,c); alert('Salvo'); } document.addEventListener('DOMContentLoaded',()=>updateUserArea());</script></body></html>
